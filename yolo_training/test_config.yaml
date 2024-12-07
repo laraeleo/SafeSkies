@@ -1,7 +1,0 @@
-path: "/content/gdrive/MyDrive/Cientista/Research/2-YOLO/new_trainings/trainX/" # dataset root dir
-train: data/train/images # train images (relative to 'path')
-val: data/test/images # test images (relative to 'path')
-
-# Classes
-names:
-    0: balloon
