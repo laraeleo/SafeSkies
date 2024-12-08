@@ -1,4 +1,4 @@
-path: "/content/gdrive/MyDrive/SafeSkies/training/" # dataset root dir
+path: "/content/gdrive/MyDrive/SafeSkies/balloon_detection/" # dataset root dir
 train: data/train/images # train images (relative to 'path')
 val: data/test/images # test images (relative to 'path')
 
