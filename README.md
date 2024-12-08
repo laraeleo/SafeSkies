@@ -1,6 +1,6 @@
 # SafeSkies
 
-This repository contains all the code and images used in the project SafeSkies: Development of a prototype to detect and track hot-air balloons in high-risk areas using computer vision.
+This repository contains all the code and images used in the project SafeSkies: Development of a prototype for detecting and tracking hot-air balloons in high-risk areas using computer vision.
 
 This project is being developed as part of the Scientific Apprentice Program at Colégio Dante Alighieri by Leonardo Paschoal Bartoccini and Lara Megda Schusterschitz, under the guidance of Professors Rodrigo Assirati Dias and Wayner de Souza Klën.
 
