@@ -8,9 +8,9 @@ const int PIN_Y2 = 10;
 
 const int SERVO_MIN = 0;
 const int SERVO_MAX = 180;
-const int SERVO_X1_INIT = 90;
+const int SERVO_X1_INIT = 45;
 const int SERVO_Y1_INIT = 90;
-const int SERVO_X2_INIT = 90;
+const int SERVO_X2_INIT = 135;
 const int SERVO_Y2_INIT = 90;
 
 const int BAUDRATE = 9600;
@@ -33,6 +33,10 @@ void setup() {
   servoY1.attach(PIN_Y1);
   servoX2.attach(PIN_X2);
   servoY2.attach(PIN_Y2);
+  servoX1.write(SERVO_X1_INIT);
+  servoY1.write(SERVO_Y1_INIT);
+  servoX2.write(SERVO_X2_INIT);
+  servoY2.write(SERVO_Y2_INIT);
 }
 
 // Loop Function
