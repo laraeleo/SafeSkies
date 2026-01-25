@@ -13,8 +13,11 @@ const int SERVO_Y1_INIT = 90;
 const int SERVO_X2_INIT = 115;
 const int SERVO_Y2_INIT = 90;
 
+const int SEARCH_HEIGHT_1 = 30;
+const int SEARCH_HEIGHT_2 = 90;
+const int SEARCH_HEIGHT_3 = 150;
+
 const int BAUDRATE = 9600;
-const int DELAY = 1000;
 
 // Initial settings
 Servo servoX1, servoY1, servoX2, servoY2;
@@ -26,6 +29,7 @@ String incomingData;
 // Function prototypes
 void parseCommand(String data);
 void updateServoAngles();
+void scanEnvironment(int c1, int c2);
 
 // Setup Function
 void setup() {
@@ -46,8 +50,18 @@ void loop() {
     char c = Serial.read();
     if (c == '\n') {
       parseCommand(incomingData);
-      updateServoAngles();
-      delay(DELAY);
+      if (newX1 == 1000 && newX2 == 1000) {
+        scanEnvironment(1, 1);
+      }
+      else if (newX1 == 1000) {
+        scanEnvironment(1, 0);
+      }
+      else if (newX2 == 1000) {
+        scanEnvironment(0, 1);
+      }
+      else {
+        updateServoAngles();
+      }
       incomingData = "";
     } else {
       incomingData += c;
@@ -90,5 +104,52 @@ void updateServoAngles() {
   if (newY2 != currentY2  && newY2 >= SERVO_MIN && newY2 <= SERVO_MAX) {
     servoY2.write(newY2);
     currentY2 = newY2;
+  }
+}
+
+// Scan the environment
+void scanEnvironment(int c1, int c2) {
+  if (c1 && c2) {
+    servoY1.write(SEARCH_HEIGHT_1);
+    servoY2.write(SEARCH_HEIGHT_1);
+    for (int pos = 0; pos <= 180; pos++) {
+      servoX1.write(pos);
+      servoX2.write(pos);
+      delay(15);
+    }
+    servoY1.write(SEARCH_HEIGHT_2);
+    servoY2.write(SEARCH_HEIGHT_2);
+    for (int pos = 0; pos <= 180; pos++) {
+      servoX1.write(pos);
+      servoX2.write(pos);
+      delay(15);
+    }
+    servoY1.write(SEARCH_HEIGHT_3);
+    servoY2.write(SEARCH_HEIGHT_3);
+    for (int pos = 0; pos <= 180; pos++) {
+      servoX1.write(pos);
+      servoX2.write(pos);
+      delay(15);
+    }
+    servoX1.write(SERVO_X1_INIT);
+    servoY1.write(SERVO_Y1_INIT);
+    servoX2.write(SERVO_X2_INIT);
+    servoY2.write(SERVO_Y2_INIT);
+  }
+  else if (c1) {
+    servoY1.write(newY1);
+    for (int pos = 0; pos <= 180; pos++) {
+      servoX1.write(pos);
+      delay(15);
+    }
+    servoX1.write(SERVO_X1_INIT);
+  }
+  else if (c2) {
+    servoY2.write(newY2);
+    for (int pos = 0; pos <= 180; pos++) {
+      servoX2.write(pos);
+      delay(15);
+    }
+    servoX2.write(SERVO_X2_INIT);
   }
 }
