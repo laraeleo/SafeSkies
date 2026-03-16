@@ -112,24 +112,24 @@ void scanEnvironment(int c1, int c2) {
   if (c1 && c2) {
     servoY1.write(SEARCH_HEIGHT_1);
     servoY2.write(SEARCH_HEIGHT_1);
-    for (int pos = 0; pos <= 180; pos++) {
+    for (int pos = 0; pos <= 180; pos+=20) {
       servoX1.write(pos);
       servoX2.write(pos);
-      delay(15);
+      delay(500);
     }
     servoY1.write(SEARCH_HEIGHT_2);
     servoY2.write(SEARCH_HEIGHT_2);
-    for (int pos = 0; pos <= 180; pos++) {
+    for (int pos = 0; pos <= 180; pos+=20) {
       servoX1.write(pos);
       servoX2.write(pos);
-      delay(15);
+      delay(500);
     }
     servoY1.write(SEARCH_HEIGHT_3);
     servoY2.write(SEARCH_HEIGHT_3);
-    for (int pos = 0; pos <= 180; pos++) {
+    for (int pos = 0; pos <= 180; pos+=20) {
       servoX1.write(pos);
       servoX2.write(pos);
-      delay(15);
+      delay(500);
     }
     servoX1.write(SERVO_X1_INIT);
     servoY1.write(SERVO_Y1_INIT);
@@ -137,18 +137,20 @@ void scanEnvironment(int c1, int c2) {
     servoY2.write(SERVO_Y2_INIT);
   }
   else if (c1) {
+    delay(2000);
     servoY1.write(newY1);
-    for (int pos = 0; pos <= 180; pos++) {
+    for (int pos = 0; pos <= 180; pos+=5) {
       servoX1.write(pos);
-      delay(15);
+      delay(500);
     }
     servoX1.write(SERVO_X1_INIT);
   }
   else if (c2) {
+    delay(2000);
     servoY2.write(newY2);
-    for (int pos = 0; pos <= 180; pos++) {
+    for (int pos = 0; pos <= 180; pos+=5) {
       servoX2.write(pos);
-      delay(15);
+      delay(500);
     }
     servoX2.write(SERVO_X2_INIT);
   }
